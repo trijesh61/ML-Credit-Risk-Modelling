@@ -1,5 +1,8 @@
 import streamlit as st
 from prediction_helper import predict  # Ensure this is correctly linked to your prediction_helper.py
+import os
+os.environ["STREAMLIT_WATCH_FOR_CHANGES"] = "false"
+
 
 # Set the page configuration and title
 st.set_page_config(page_title="Lauki Finance: Credit Risk Modelling", page_icon="📊")
