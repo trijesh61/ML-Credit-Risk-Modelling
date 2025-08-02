@@ -3,7 +3,8 @@
 
 A machine learning-based web application to assess the creditworthiness of loan applicants. Built using Python and deployed via Streamlit, the app predicts the probability of default and classifies users into credit risk categories like **Poor**, **Average**, **Good**, and **Excellent**.
 
-🔗 **Live App**: [Click here to try it out](https://ml-credit-risk-modelling.streamlit.app/)
+[![Streamlit App](https://img.shields.io/badge/Live%20App-Click%20Here-brightgreen?style=for-the-badge&logo=streamlit)](https://ml-credit-risk-modelling.streamlit.app/)
+
 
 ---
 
