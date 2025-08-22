@@ -1,5 +1,9 @@
 import streamlit as st
-from app.prediction_helper import predict  # Import via package path for Streamlit Cloud
+# Robust import: try local module first, then package import
+try:
+    from prediction_helper import predict  # when running script from within app/
+except ModuleNotFoundError:
+    from app.prediction_helper import predict  # when running from repo root
 import os
 os.environ["STREAMLIT_WATCH_FOR_CHANGES"] = "false"
 
