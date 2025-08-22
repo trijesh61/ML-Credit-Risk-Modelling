@@ -2,12 +2,31 @@ import joblib
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
+from pathlib import Path
 
-# Path to the saved model and its components
-MODEL_PATH = 'artifacts/model_data.joblib'
+# Resolve the model path robustly for both local runs and Streamlit Cloud
+_here = Path(__file__).resolve().parent
+_candidates = [
+    _here / 'artifacts' / 'model_data.joblib',            # e.g., repo/app/artifacts/model_data.joblib
+    _here.parent / 'artifacts' / 'model_data.joblib',     # e.g., repo/artifacts/model_data.joblib
+]
 
-# Load the model and its components
-model_data = joblib.load(MODEL_PATH)
+_model_path = next((p for p in _candidates if p.exists()), None)
+if _model_path is None:
+    raise FileNotFoundError(
+        f"Model artifact not found. Looked in: {', '.join(str(p) for p in _candidates)}"
+    )
+
+# Load the model and its components with clearer error if versions mismatch
+try:
+    model_data = joblib.load(_model_path)
+except Exception as e:
+    raise RuntimeError(
+        "Failed to load model artifact. This is commonly due to a version mismatch between\n"
+        "the environment (numpy/scikit-learn/joblib) and the versions used to create the artifact.\n"
+        f"Artifact path: {_model_path}\nOriginal error: {e}"
+    ) from e
+
 model = model_data['model']
 scaler = model_data['scaler']
 features = model_data['features']
