@@ -22,7 +22,7 @@ A machine learning-based web application to assess the creditworthiness of loan 
 
 - **Python**
 - **Pandas**, **NumPy**
-- **Scikit-learn**, **XGBoost**
+- **Scikit-learn**
 - **Streamlit** for UI
 - **Joblib** for model serialization
 
@@ -31,42 +31,62 @@ A machine learning-based web application to assess the creditworthiness of loan 
 ## 📁 Project Structure
 
 ```
-📦 credit-risk-modelling/
-├── app/                  # Streamlit app logic
-├── data/                 # Processed datasets (if any)
-├── models/               # Saved machine learning models
-├── notebooks/            # EDA and model development notebooks
-├── requirements.txt      # Python dependencies
-├── README.md             # Project documentation
-└── SOW_Credit_Risk_Model.pdf  # Statement of Work (optional)
+📦 ML-Credit-Risk-Modelling/
+├── app/                   # Streamlit app (entry: app/main.py)
+│   ├── __init__.py
+│   ├── main.py
+│   └── prediction_helper.py
+├── artifacts/             # Saved model artifact(s)
+│   └── model_data.joblib
+├── dataset/               # Source CSVs (optional for reference)
+│   ├── bureau_data.csv
+│   ├── customers.csv
+│   └── loans.csv
+├── credit_risk_model.ipynb
+├── credit_risk_model_python_code.ipynb
+├── requirements.txt       # Python dependencies
+└── README.md              # Project documentation
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started (Local)
 
 To run the app locally:
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/credit-risk-modelling.git
-cd credit-risk-modelling
+# 1) Clone the repository
+git clone https://github.com/<your-username>/ML-Credit-Risk-Modelling.git
+cd ML-Credit-Risk-Modelling
 
-# 2. Install dependencies
+# 2) Create/activate a virtual env (recommended)
+# python -m venv .venv && source .venv/bin/activate   # macOS/Linux
+# python -m venv .venv && .venv\Scripts\activate      # Windows
+
+# 3) Install dependencies
 pip install -r requirements.txt
 
-# 3. Run the Streamlit app
-streamlit run app/app.py
+# 4) Run the Streamlit app
+streamlit run app/main.py
 ```
+
+---
+
+## ☁️ Deploy on Streamlit Community Cloud
+
+1. Push your repo to GitHub.
+2. Go to share.streamlit.io, select the repo/branch.
+3. Set Main file path to `app/main.py`.
+4. Ensure `requirements.txt` exists at repo root. Deploy.
 
 ---
 
 ## 📊 Input Parameters
 
 The app expects the following inputs:
-- Age, Income, Employment Status
-- Credit Utilization, Number of Open Accounts
-- Loan Amount, Loan Purpose, and more
+- Age, Income, Loan Amount, Loan Tenure
+- Credit Utilization, Delinquency Ratio, Avg DPD, Open Accounts
+- Residence Type, Loan Purpose, Loan Type
 
 ---
 
